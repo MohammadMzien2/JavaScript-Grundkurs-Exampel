@@ -388,7 +388,8 @@ if(password.length >= 8){
 }
 
 // else if statements 
- *//*
+ /* Workshop 1
+
 let password;
 //   password = "password"; // inte giltigt
 //   password = "pa$sword"; // giltigt
@@ -436,8 +437,8 @@ if(password.includes(specialChar)){
 
 // logical operators - OR ││ and AND &&
 
-// logical not (!) switch på platsen på värdet
 
+// logical not (!) switch på platsen på värdet
 
 let user = false;
 
@@ -490,8 +491,8 @@ default:
 }
 
 
-
 // variables & block scope 
+
 // const and let is the same thing
 const age = 30;
 
@@ -523,11 +524,13 @@ speak();
 speak();
 
 // function declaration
-function greet (){
-console.log('Hello there');
- 
-}
+ function greet (){  
+     alert("Hello, there!");
+     console.log("Hello, there!");
+ }
+greet();
 
+    
 
 //  arguments & parameters 
 
@@ -626,11 +629,9 @@ const logPerson =(person, index) => {
 }
 people.forEach (logPerson);
 
-
 people.forEach ((person, index) => {
    console.log(index, person);
 });
-
 
 //  Get a refernce to the 'ul'
 
@@ -647,4 +648,41 @@ html += `<li style ="color: purple"> ${person}</li>`;
 
 console.log(html);
 ul.innerHTML = html;
-*/
+
+
+// truthy / falsy 
+
+let username = "";
+let msg; // "welcome anonymous visitor" / "welcome Mohammad!"
+
+if (username){
+    msg = "Welcome, anonymous visitor";
+}
+
+msg = `Welcome ${username}!`;
+console.log(msg);
+
+
+//ternary operator
+
+let msg;
+
+ let username = "Mohammad";
+if (username){
+    let msg = "You have a name, wow!";
+
+}else {
+    let msg = " Why you has no name!";
+}
+
+let msg = (username) 
+?  "You have a name, wow!"
+ : "You has no name?!!";
+console.log(msg);*/ 
+
+// functions utföra en specifik sak och vi kan göra det hur många gånger och separera koden
+
+
+
+
+
