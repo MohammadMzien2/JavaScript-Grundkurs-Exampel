@@ -766,27 +766,55 @@ const getRandomNumber = (max = 10) => {
     return Math.ceil(Math.random() * max);
 }
 
-let numberToGuess = 5;
+let numberToGuess = getRandomNumber();
 let continueGame = true;
+let tries = 0;
 
+console.log("numbertoGuess:", numberToGuess);
 while (continueGame) {
     // Ask user for guess 
 
     let guess = Number(prompt("please guess a number between 1-10"));
     console.log("Guessed number:", guess, typeof guess);
 
+    //  increase number of guesses made
+    tries++;
+    console.log("At guess:", tries);
     //  Guess was correct?
     if (guess === numberToGuess) {
         console.log("Guess was correct");
-        alert("Great success!");
+        alert(`Great success! You gussed the correct answer in ${tries} tries.`);
         continueGame = false;
 
     } else if (guess === 0) {
+        // Decrease guesse made by 1 to not count the rage-quit
+        //tries--;
+
         // User rage-quit
         console.log("Guess was 0, quetting game");
-        alert("You GIVE UP?!");
+        alert(`WHY You GIVE UP After ONLY ${tries} TRIES?!`);
         continueGame = false;
+
+    } else if (guess > numberToGuess) {
+        // Guess was too high
+        //  increase number of guesses made
+        tries++;
+        console.log("Guess was too high");
+        alert("Guess was too high");
+
+    } else if (guess < numberToGuess) {
+        // Guess was too low
+        //  increase number of guesses made
+        tries++;
+        console.log("Guess was too low");
+        alert("Guess was too low");
+
+        // Guess was not valid
+    } else {
+        console.log("That's not a number");
+        alert("That's not a number");
     }
 
-
 }
+
+console.log("Game ended");
