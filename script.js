@@ -246,10 +246,10 @@ console.log(random);
  console.log(ninjas.length);
 
   let result =ninjas.concat(['ken', 'crystal']);
-  let result =ninjas.push('ken'); //push in a string at the end of the array
- result =ninjas.pop(); // remove the last item in the array
- student.shift(); //remove the first item in the array
-student.unshift(); // add a string to the start of the array
+  let result =ninjas.push('ken'); //push in a string at the end of the array, för att lägga till någon
+ result =ninjas.pop(); // remove the last item in the array, ta bort sista i listan
+ student.shift(); //remove the first item in the array, ta bort för i listan
+student.unshift(); // add a string to the start of the array, lägg till först i listan
 
 
 
@@ -510,7 +510,7 @@ if(true){
 
 console.log('outside code block:' ,age, name, test);
 
-
+// functions utföra en specifik sak och vi kan göra det hur många gånger och separera koden
 // function expression
 const speak = function(){
 console.log('good day!');
@@ -558,9 +558,13 @@ const calcArea = function(radius){
  return 3.14 * radius**2;
 }
 
-//  arrow funtion
+//  Arrow funtion
 const calcArea = radius =>  3.14 *radius**2;
 
+// Arrow function
+const clacCircleArea =  (radius) => {
+    return 3.14159 * radius ** 5;
+}
 
 const area = calcArea(5);
 console.log('area is:', area); 
@@ -611,12 +615,37 @@ console.log(resultTwo)
 
 
 // callbacks & foreach
+
+
+const nagUser = (txt) => {
+    alert(txt);
+}
+
+const log = (txt) => {
+    console.log(txt);
+}
+
+const  makeMoreInteresting = (txt, callback) => {
+    let interesting = txt + "!!!!!!!!!!!!";
+    callback(interesting);
+}
+makeMoreInteresting ("this is so much fun", nagUser);
+
+let students =["Johan","Pella", "kajsa", "Maja", "Kajan"];
+for (let i = 0; i< students.length; i++) {
+    console.log(`students at index ${i} is: ${students [i]}`);
+}
+ students.forEach (function(item, index, arr){
+     console.log(`student at index ${index} is: ${item}`, arr);
+ })
+
+
 const myFunc = (callbackFunc) => {
-//     // do something
+    // do something
    let value = 50;
    callbackFunc(value);
 
-// };
+ };
 
 myFunc(value => {
 //     //do something
@@ -678,11 +707,86 @@ if (username){
 let msg = (username) 
 ?  "You have a name, wow!"
  : "You has no name?!!";
-console.log(msg);*/ 
+console.log(msg);
 
-// functions utföra en specifik sak och vi kan göra det hur många gånger och separera koden
+// omkretsen och area för en box och circel
+const calcbBoxCircumference = function (width, height) {
+    const circumference = width * 2 + height * 2;
+    return circumference;
+
+}
+const calcBoxArea = function (width, height){
+    const area= width * height;
+    return area;
+}
 
 
+/*
+const boxCircumference = calcbBoxCircumference(20, 40);
+console.log(boxCircumference);
+
+const boxCircumference2 = calcbBoxCircumference(60, 120);
+console.log(boxCircumference2);
+
+const w = 20;
+const h = 40;
+const ci = calcbBoxCircumference(w, h);
+if (ci > 100){
+    console.log ("thats a big box");
+}else { 
+    console.log("smal box"); 
+}
+*/
+
+// Math / Math.PI = 3.14 / Math.E 2.718281828459045 / Math.round () avrund   
+// Math.ceil() avrunda uppåt / Math.floor avrunda ner åt/ Math.random(X)
+/*
+let randomNumber = Math.random(); // 0- 0.9999999999
+let randomNumberberMultipiled = randomNumber * 10; // 0- 0.999999999
+let roundedRandomNumberMultipled = Math.ceil(randomNumberberMultipiled); // 1-10
+let randNum = Math.ceil(Math.random() * 10);
+
+console.log (randNum);
+
+const getRandomNumber = (max = 10) =>{
+    return Math.ceil(Math.random() * max);
+}
+let numberToGuess = getRandomNumber(10);
+let bigNumberToGuess = getRandomNumber(20);
+
+// Extra function
+let answer = prompt("please enter something")
+console.log("Your answer was:", answer)
+*/
+
+// Guess the number
 
 
+const getRandomNumber = (max = 10) => {
+    return Math.ceil(Math.random() * max);
+}
 
+let numberToGuess = 5;
+let continueGame = true;
+
+while (continueGame) {
+    // Ask user for guess 
+
+    let guess = Number(prompt("please guess a number between 1-10"));
+    console.log("Guessed number:", guess, typeof guess);
+
+    //  Guess was correct?
+    if (guess === numberToGuess) {
+        console.log("Guess was correct");
+        alert("Great success!");
+        continueGame = false;
+
+    } else if (guess === 0) {
+        // User rage-quit
+        console.log("Guess was 0, quetting game");
+        alert("You GIVE UP?!");
+        continueGame = false;
+    }
+
+
+}
