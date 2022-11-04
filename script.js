@@ -709,6 +709,195 @@ let msg = (username)
  : "You has no name?!!";
 console.log(msg);
 
+
+const getRandomNumber = (max = 10) =>{
+    return Math.ceil(Math.random() * max);
+}
+let numberToGuess = getRandomNumber(10);
+let bigNumberToGuess = getRandomNumber(20);
+
+// Extra function
+let answer = prompt("please enter something")
+console.log("Your answer was:", answer)
+
+
+// Guess the number
+
+const getRandomNumber = (max = 10) => {
+    return Math.ceil( Math.random() * max );
+}
+
+let exitGame = false;
+let highscore = null;
+
+while (exitGame === false) {     // while (!exitGame) {
+    let numberToGuess = getRandomNumber();
+    let continueGame = true;
+    let tries = 0;
+
+    console.log("numberToGuess:", numberToGuess);
+
+    while (continueGame) {
+        // Ask user for guess
+        let guess = Number( prompt("Please guess a number between 1-10") );
+        console.log("Guessed number:", guess, typeof guess);
+
+        if (guess === numberToGuess) {
+            // Guess was correct
+            // Increase number of guesses made
+            tries++;
+
+            // we can haz highscore?
+            if (highscore) {
+                // new highscore?
+                if (tries < highscore) {
+                    console.log(`YAY NEW HIGHSCORE!`);
+                    highscore = tries;
+                } else {
+                    console.log(`Sorry, no new highscore. Your current highscore is ${highscore}.`);
+                }
+            } else {
+                highscore = tries;
+            }
+
+            console.log("Guess was correct! ");
+            alert(`Great success! You guessed the correct answer in ${tries} tries.`);
+            continueGame = false;
+
+        } else if (guess === 0) {
+            // User rage-quit
+            console.log("Guess was 0, quitting game");
+            alert(`Y U GIVE UP AFTER ONLY ${tries} TRIES?!`);
+            continueGame = false;
+            exitGame = true;
+
+        } else if (guess > numberToGuess) {
+            // Guess was too high
+            // Increase number of guesses made
+            tries++;
+            console.log("Guess was too high");
+            alert("Guess was too high");
+
+        } else if (guess < numberToGuess) {
+            // Guess was too low
+            // Increase number of guesses made
+            tries++;
+            console.log("Guess was too low ");
+            alert("Guess was too low");
+
+        } else {
+            // Guess was not valid
+            console.log("That's not a number");
+            alert("That's not a number");
+        }
+    }
+}
+console.log("Game ended");
+
+// Object literals
+let user = {
+    name: 'crystal', 
+    age: 30,
+    email: 'crystal@thenetninja.co.uk',
+    location: 'berlin',
+    blogs : ['why mac & cheese rules', '10 things to make with marmite']
+};
+console.log(user);
+console.log(user.name);
+
+user.age = 35;
+console.log(user.age);
+
+console.log(user['location']);
+user ['name'] = 'chun-li';
+console.log(user['name']);
+
+console.log(typeof user);
+
+
+// adding methodes 
+
+let user = {
+    name: 'crystal',
+    age: 30,
+    email: 'crystal@thenetninja.co.uk',
+    location: 'berlin',
+    blogs: ['why mac & cheese rules', '10 things to make with marmite'],
+    login: function () {
+    console.log('the user logged in');
+    },
+    logout: function(){
+        console.log('the user logged out');
+    },
+    logBlogs: function(){
+
+    }
+};
+user.login();
+user.logout();
+const name = 'mario';
+name.toUpperCase();
+
+
+// this keyword
+
+ let user = {
+     name: 'crystal',
+     age: 30,
+     email: 'crystal@thenetninja.co.uk',
+    location: 'berlin',
+    blogs: ['why mac & cheese rules', '10 things to make with marmite'],
+   login: (){
+       console.log('the user logged in');
+   },
+   logout: (){
+       console.log('the user logged out');
+   },
+       logBlogs:(){
+        console.log(this.blogs);
+                 console.log('this user has written the following blogs:');
+        this.blogs.forEach( blog => {
+             console.log(blog);
+         });
+     };
+ };
+ user.logBlogs();
+ console.log(this);
+
+ objects in arrays
+ const blogs = [
+     {title: `why mac & cheese rules`, likes:30},
+     {title:'10 things to make with marmite'}
+ ];
+ console.log(blogs);
+
+let user = {
+    name: 'crystal',
+    age: 30,
+    email: 'crystal@thenetninja.co.uk',
+    location: 'berlin',
+    blogs: [
+        {title: `why mac & cheese rules`, likes:30},
+        {title:'10 things to make with marmite', likes: 50}
+    ],
+    login: function(){
+        console.log('the user logged in');
+    },
+    logout: function(){
+        console.log('the user logged out');
+    },
+    logBlogs: function(){
+        //  console.log(this.blogs);
+         console.log('this user has written the following blogs:');
+         this.blogs.forEach( blog => {
+            console.log(blog.title, blog.likes);
+        });
+    }
+};
+user.logBlogs();
+console.log(this);
+
+// Math object 
 // omkretsen och area för en box och circel
 const calcbBoxCircumference = function (width, height) {
     const circumference = width * 2 + height * 2;
@@ -721,7 +910,6 @@ const calcBoxArea = function (width, height){
 }
 
 
-/*
 const boxCircumference = calcbBoxCircumference(20, 40);
 console.log(boxCircumference);
 
@@ -736,11 +924,10 @@ if (ci > 100){
 }else { 
     console.log("smal box"); 
 }
-*/
 
-// Math / Math.PI = 3.14 / Math.E 2.718281828459045 / Math.round () avrund   
-// Math.ceil() avrunda uppåt / Math.floor avrunda ner åt/ Math.random(X)
-/*
+ Math / Math.PI = 3.14 / Math.E 2.718281828459045 / Math.round () avrund   
+ Math.ceil() avrunda uppåt / Math.floor avrunda ner åt/ Math.random(X)
+
 let randomNumber = Math.random(); // 0- 0.9999999999
 let randomNumberberMultipiled = randomNumber * 10; // 0- 0.999999999
 let roundedRandomNumberMultipled = Math.ceil(randomNumberberMultipiled); // 1-10
@@ -748,73 +935,127 @@ let randNum = Math.ceil(Math.random() * 10);
 
 console.log (randNum);
 
-const getRandomNumber = (max = 10) =>{
-    return Math.ceil(Math.random() * max);
-}
-let numberToGuess = getRandomNumber(10);
-let bigNumberToGuess = getRandomNumber(20);
+// Primitive values
+let scoreOne = 50;
+let scoreTwo = scoreOne;
+console.log(`scoreOne: ${scoreOne}`, `scoreTwo: ${scoreTwo}`);
 
-// Extra function
-let answer = prompt("please enter something")
-console.log("Your answer was:", answer)
+scoreOne = 100;
+console.log(`scoreOne: ${scoreOne}`, `scoreTwo: ${scoreTwo}`);
+
+//  reference values
+ const userOne = {name: 'ryu', age: 30};
+ const userTwo = userOne;
+console.log(userOne, userTwo);
+
+userOne.name = 'chun-li';
+console.log(userOne, userTwo);
+
+// The query selector
+const para = document.querySelector('div.error');
+
+console.log(para);
+
+// the multipale selector
+const paras = document.querySelectorAll('p');
+const erros = document.querySelectorAll('.error')
+paras.forEach(para => {
+    console.log(para);
+})
+console.log(paras [2]);
+
+
+// Get an element by ID 
+const title = document.getElementById('page-title');
+console.log(title);
+
+// Get elements by thier class name
+const errors = document.getElementsByClassName('error');
+console.log(errors[0]);
+
+// Get elements by thier tag name
+const paras = document.getElementsByTagName('p');
+console.log(paras);
+console.log(paras [0]);
+
+// inner text in this element
+const para = document.querySelector('p');
+
+ console.log(para.innerText); 
+
+// change the text in this paragraph/ adding more text in the paragraph
+ para.innerText += 'ninjas are awesom!';
+
+// All text in the html / adding more text in foreach one
+const paras = document.querySelectorAll('p');
+ paras.forEach(para =>{
+   console.log(para.innerText);
+  para.innerText += 'new text';
+ });
+
+// change the html inside 
+ const content = document.querySelector ('.content');
+
+ console.log(content.innerHTML);
+
+ content.innerHTML += ' <h2> This is a new h2 </h2>'
+
+const people = ['mario', 'luigi', 'yoshi'];
+
+people.forEach(person =>{
+ content.inneHTML +=`<p>${person}</p>`;
+});
+
+// change the class and the herf link and the color
+const link = document.querySelector('a');
+
+console.log(link.getAttribute('href'));
+link.setAttribute('href', 'https://www.thenetninja.co.uk');
+link.innerText = 'the net ninja website';
+
+const mssg = document.querySelector('p');
+console.log(mssg.getAttribute ('class'));
+mssg.setAttribute('class', 'success');
+mssg.setAttribute('style', 'color:green');
+
+// adding and removing styles
+const title = document.querySelector('h1');
+// this way not so good the another method is better
+// title.setAttribute('style', 'margin:50px')
+console.log(title.style);
+console.log(title.style.color);
+
+title.style.margin = '50px';
+title.style.color = 'crimson';
+// man använder fontSize istället för font-size
+title.style.fontSize = '60px';
+// margin går bort
+title.style.margin = '';
+
+
+// adding and removing classes //innertext för alla synlig text i html // ContentText visar alla text oavsett om den är gömt eller inte
+const content = document.querySelector('p');
+ console.log(content.classList);
+ content.classList.add('error');
+content.classList.remove('error');
+content.classList.add('success');
+
+// denna metod för alla paragraph med error ord för gör den till class
+const paras = document.querySelectorAll('p');
+paras.forEach (p =>{
+    if(p.textContent.includes('error')){
+        p.classList.add('error')
+    }
+    if(p.innerText.includes('success')){
+        p.classList.add('success');
+    }
+});
+// Toggle methodes
+// en toggle för lägga en mer class
+// två toggle för remove class 
+const tittle = document.querySelector('.tittle');
+tittle.classList.toggle('test');
+tittle.classList.toggle('test');
 */
 
-// Guess the number
-
-
-const getRandomNumber = (max = 10) => {
-    return Math.ceil(Math.random() * max);
-}
-
-let numberToGuess = getRandomNumber();
-let continueGame = true;
-let tries = 0;
-
-console.log("numbertoGuess:", numberToGuess);
-while (continueGame) {
-    // Ask user for guess 
-
-    let guess = Number(prompt("please guess a number between 1-10"));
-    console.log("Guessed number:", guess, typeof guess);
-
-    //  increase number of guesses made
-    tries++;
-    console.log("At guess:", tries);
-    //  Guess was correct?
-    if (guess === numberToGuess) {
-        console.log("Guess was correct");
-        alert(`Great success! You gussed the correct answer in ${tries} tries.`);
-        continueGame = false;
-
-    } else if (guess === 0) {
-        // Decrease guesse made by 1 to not count the rage-quit
-        //tries--;
-
-        // User rage-quit
-        console.log("Guess was 0, quetting game");
-        alert(`WHY You GIVE UP After ONLY ${tries} TRIES?!`);
-        continueGame = false;
-
-    } else if (guess > numberToGuess) {
-        // Guess was too high
-        //  increase number of guesses made
-        tries++;
-        console.log("Guess was too high");
-        alert("Guess was too high");
-
-    } else if (guess < numberToGuess) {
-        // Guess was too low
-        //  increase number of guesses made
-        tries++;
-        console.log("Guess was too low");
-        alert("Guess was too low");
-
-        // Guess was not valid
-    } else {
-        console.log("That's not a number");
-        alert("That's not a number");
-    }
-
-}
-
-console.log("Game ended");
+// Parents, children & siblings
