@@ -1021,7 +1021,7 @@ mssg.setAttribute('style', 'color:green');
 // adding and removing styles
 const title = document.querySelector('h1');
 // this way not so good the another method is better
-// title.setAttribute('style', 'margin:50px')
+title.setAttribute('style', 'margin:50px')
 console.log(title.style);
 console.log(title.style.color);
 
@@ -1056,6 +1056,218 @@ paras.forEach (p =>{
 const tittle = document.querySelector('.tittle');
 tittle.classList.toggle('test');
 tittle.classList.toggle('test');
-*/
+
 
 // Parents, children & siblings
+const article = document.querySelector('article');
+
+console.log(article.children);
+
+ Array.from(article.children);
+ console.log(Array.from (article.children));
+console.log(article.children);
+
+Array.from(article.children).forEach(child => {
+     child.classList.add('article-element');
+ });
+
+const title = document.querySelector('h2');
+console.log(title.parentElement);
+console.log(title.parentElement.parentElement);
+console.log(title.nextElementSibling);
+console.log(title.previousElementSibling);
+
+// chaining
+console.log(title.nextElementSibling.parentElement.children);
+*/
+
+
+/*
+* TODO:
+    * Loopa över array:en `pets` och för varje `pet`, lägg till en `<li>` till
+    * `#petslist` med info om varje pet:
+ *
+ * NAME is a SPECIES of AGE year(s) old.
+ * His owner is OWNER and his favorite hobbies is to HOBBIES.
+ 
+
+// Array of pets
+const pets = [
+    {
+        name: "Mr Barksby",
+        species: "Dog",
+        age: 5,
+        hobbies: ["Tail-wagging", "Car-chasing", "Eating lots of treats"],
+        owner: {
+            name: "Mr Beans",
+            age: 57,
+        },
+        sound: "WOOOFF!",
+        speak() {
+            console.log(`${this.name} sound: ${this.sound}`);
+        }
+    },
+    {
+        hobbies: ["Be cute"],
+        species: "Kitten",
+        age: 1,
+        name: "Meow Jr",
+        sound: "meooow!",
+        meowCounter: 0,
+        speak() { // same as writing "speak: function() {}"
+            this.meowCounter++;
+            console.log(this.sound);
+            console.log(`Meowed times today: ${this.meowCounter}`);
+        }
+    },
+    {
+        hobbies: ["Be cute"],
+        species: "Old Kitten",
+        age: 0,
+        name: "Meow Sr",
+        sound: "meooow!",
+        meowCounter: 0,
+        speak() { // same as writing "speak: function() {}"
+            this.meowCounter++;
+            console.log(this.sound);
+            console.log(`Meowed times today: ${this.meowCounter}`);
+        }
+    }
+];
+
+const petslistEl = document.querySelector('#petslist')
+
+// loop over pets and pass each pet to the function
+// en argument man behöver inte med det är okej() flera argument är måste ha ()
+pets.forEach((pet) => {
+    // first time pet will be pets [0]
+    // second time pet will be pets [1]
+
+
+    // create a string that will contain the info
+    let info;
+    if (pet.owner) {
+        // yay pet had an owner
+        info = `<li>${pet.name} is a ${pet.species} of ${pet.age} year(s) old. His owner is ${pet.owner.name} and his age ${pet.owner.age}</li>`;
+        console.log(info);
+    }
+    else {
+        // pet had no owner
+        info = `<li>${pet.name} is a ${pet.species} of ${pet.age} year(s) old. please adopt him!</li>`;
+        console.log(info);
+    }
+
+
+    // append the string to the <ul> 's innerhtml
+    petslistEl.innerHTML += info;
+
+    // annan method och använda den
+    // let info = "Pet's name is:" + pet.name + "and age is:" +
+});
+
+// Events
+const button = document.querySelector('button');
+
+button.addEventListener('click', ()=>{
+    console.log('you clicked me');
+});
+
+const items = document.querySelectorAll('li');
+ 
+items.forEach(item =>{
+    item.addEventListener('click', e => {
+        // console.log('item clicked');
+        // console.log(e)
+        // console.log(e.target); en <li>
+        // console.log(item); dubbla <li>
+         e.target.style.textDecoration = 'line-through'; // användes för att ta bort innehållet i <li>
+    });
+});
+
+// Creating och remvoing elements
+remove all ul
+const ul = document.querySelector('ul');
+ ul.remove();
+
+// remove <li> that you click on
+const items = document.querySelectorAll('li');
+ 
+items.forEach(item =>{
+    item.addEventListener('click', e => {
+        e.target.remove();
+    });
+});
+
+// add elements 
+const ul = document.querySelector('ul');
+
+const button = document.querySelector('button');
+
+button.addEventListener('click', () => {
+    // första sätt att göra det
+     ul.innerHTML += '<li> something new</li>';
+    // andra sätt att göra det
+    const li = document.createElement('li');
+    li.textContent = 'something new to do';
+    // li tag flyttar ner 
+     ul.append(li);
+    // li tag flyttar upp
+    ul.prepend(li);
+});
+const items = document.querySelectorAll('li');
+
+items.forEach(item => {
+    item.addEventListener('click', e => {
+        e.target.remove();
+    });
+});
+
+// Event bubbling and delegation
+
+const ul = document.querySelector('ul');
+
+const button = document.querySelector('button');
+
+button.addEventListener('click', () => {
+    // andra sätt att göra det
+    const li = document.createElement('li');
+    li.textContent = 'something new to do';
+    // li tag flyttar upp
+    ul.prepend(li);
+});
+ const items = document.querySelectorAll('li');
+
+ items.forEach(item => {
+     item.addEventListener('click', e => {
+        console.log('event in LI');
+        e.stopPropagation();
+         e.target.remove();
+     });
+});
+// delete all thing 
+ul.addEventListener('click', e => {
+    console.log('event in UL');
+if(e.target.tagName ==='LI'){
+    e.target.remove();
+}
+});
+
+// More events
+const copy = document.querySelector('.copy-me');
+
+copy.addEventListener('copy', () =>{
+    console.log('OI! my content is copyright');
+});
+
+const box = document.querySelector('.box');
+
+box.addEventListener('mousemove', e =>{
+//console.log(e);
+//console.log(e.offsetX, e.offsetY);
+box.textContent = `x pos- ${e.offsetX} y pos -${e.offsetY}`;
+});
+
+document.addEventListener('wheel', e =>{
+    console.log(e.pageX, e.pageY)
+});
+*/
