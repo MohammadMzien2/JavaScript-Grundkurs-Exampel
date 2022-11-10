@@ -25,6 +25,8 @@ ul.addEventListener('click', e => {
     console.log('event in UL');
 if(e.target.tagName ==='LI'){
     e.target.remove();
+    e.target.classList.toggle();
+    e.target.classList.add();
 }
 });
 
@@ -46,4 +48,11 @@ box.textContent = `x pos- ${e.offsetX} y pos -${e.offsetY}`;
 document.addEventListener('wheel', e =>{
     console.log(e.pageX, e.pageY)
 });
-*/
+
+
+ * classList (used on an element)
+ * - add		adds a class (if it doesn't already exist)
+ * - remove		removes a class (if it doesn't already exist)
+ * - toggle		adds a class if it doesn't already exist, otherwise removes it
+ * - replace	replaces a class with another class
+ * - contains	returns true/false if class exists
