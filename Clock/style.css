@@ -4,7 +4,14 @@
 	align-items: center;
 	height: 100vh;
 }
+#app2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
 
 #clock {
-	font-size: 6em;
+    border: 6px outset goldenrod;
+	font-size: 3em;
 }
