@@ -10,16 +10,17 @@
 //numbers 
 
 const numbers = [49, 5, 21, 50, 24, 20, 47, ]
-
+console.log("numbers:", numbers)
 // find fist large number
 const largeNumbers = numbers.filter(num => num=> 25);
 const firstLargeNumber = numbers.find(num => num=> 25); // 50
+console.log("First number >= 25 is:", firstLargeNumber)
 
 
 const students = [
     {
         name: "johan",
-        points: 1337,
+        points: 13,
     },
     {
         name: "Saman",
@@ -38,3 +39,6 @@ const students = [
         points: 35,
     },
 ];
+// find first student which has godkänt (>= 40)
+const firstPassedStudent = students.find(student =>  (student.points >= 40));
+console.log("First passed student:", firstPassedStudent);
