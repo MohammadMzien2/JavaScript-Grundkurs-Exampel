@@ -71,7 +71,7 @@ numbers.sort( (a,b) =>  a - b
 );
 
 console.log("numbers in proper! order:", numbers);  
-*/
+
 // we can even sort objects based on a property
 const students = [
     {
@@ -111,11 +111,11 @@ students.sort( (a, b) => {
 
 console.log("Student-objects sorted by name:", students);
 
-/*
+
 console.log("Student-objects sorted by name:", students);
 
 
-// sortera med poäng 
+// Array sorting alphabetically regardless of casing of value on an object-attribute
 console.log("students before sort:", students);
 
 students.sort((a, b) => {
