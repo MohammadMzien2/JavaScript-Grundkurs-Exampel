@@ -10,7 +10,7 @@
 
 //numbers 
 
-const numbers = [49, 5, 21, 50, 24, 20, 47,]
+const numbers = [49, 5, 21, 50, 24, 20, 47, ]
 console.log("Original numbers:", numbers);
 
 // put all numbers >= större än 25 in a new array
