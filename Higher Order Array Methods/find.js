@@ -8,6 +8,7 @@
 //  clone an Array
 //  Shuffle an Array
 //numbers 
+/*
 
 const numbers = [49, 5, 21, 50, 24, 20, 47, ]
 console.log("numbers:", numbers)
@@ -42,3 +43,10 @@ const students = [
 // find first student which has godkänt (>= 40)
 const firstPassedStudent = students.find(student =>  (student.points >= 40));
 console.log("First passed student:", firstPassedStudent);
+*/
+
+const scores = [10, 5, 0, 40, 30, 10, 90, 70];
+
+const firstHighScore = scores.find (score =>  score > 50);
+
+console.log(firstHighScore);
