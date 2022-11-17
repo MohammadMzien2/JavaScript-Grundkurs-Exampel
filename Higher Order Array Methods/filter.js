@@ -7,14 +7,14 @@
 */
 //  clone an Array
 //  Shuffle an Array
-
+/*
 //numbers 
 
 const numbers = [49, 5, 21, 50, 24, 20, 47, ]
 console.log("Original numbers:", numbers);
 
 // put all numbers >= större än 25 in a new array
-/*
+
 const largeNumbers =[];
 numbers.forEach(num =>{
     if(num >= 25){
@@ -37,13 +37,13 @@ const largeNumbers = numbers.filter((num) => {
 // förkortning
 const largeNumbers = numbers.filter(num>= num>= 25);
 console.log("lagre numbers:", largeNumbers);
-*/
 
-/*
+
+
 const names = ["Johan", "kajsa", "Bo", "Li"];
 const longishNames = names.filter(name => name.length > 2);
 console.log("Longish names:", longishNames);
-*/
+
 
 const students = [
     {
@@ -71,3 +71,21 @@ const students = [
 // vilka studenter som är godkända
 const passed = students.filter(student => student.points >= 20);
 console.log("Students who passed the exam:", passed)
+*/
+
+const scores = [10, 30, 15, 25, 50, 40, 5];
+
+// const filterdScores = scores.filter ((score) =>{
+//     return score > 20;
+// });
+// console.log(filterdScores);
+
+const users = [
+    {name: 'shaun', premium: true},
+    {name: ' yoshi',premium: false },
+    {name: 'mario', premium: false},
+    {name: 'chun-li',premium: true }
+];
+const premiumUsers = users.filter(user => user.premium);
+
+console.log(premiumUsers);
