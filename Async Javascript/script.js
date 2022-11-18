@@ -12,7 +12,7 @@ console.log(4);
 */
 
 // Make Http request 
-
+/*
 const getTodos = (resource) => {
 
     return new Promise((resolve, reject) => {
@@ -37,13 +37,14 @@ getTodos('luigi.json').then(data => {
     console.log('promise resolved:', data);
     return getTodos('mario.json');
 }).then( data => {
-console.log('proise 2 resolved:', data)
+console.log('proise 2 resolved:', data);
+return getTodos('shaun.json');
+}).then (data => {
+console.log('Promise 3 resolved:', data)
 }).catch(err => {
-    console.log('promise rejected:', err)
+    console.log('promise rejected:', err);
 });
-
-
-
+*/
 
 // Promise example 
 /*
@@ -52,7 +53,6 @@ const getSomething = () => {
     return new Promise((resolve, reject) => {
         // Fetch something 
         resolve('some data');
-
 
         //reject('some error');
     });
@@ -74,5 +74,6 @@ const getSomething = () => {
  }).catch(err => {
      console.log(err);
  });
-
 */
+
+// 
