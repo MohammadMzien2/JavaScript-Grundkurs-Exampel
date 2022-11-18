@@ -11,14 +11,12 @@ console.log(3);
 console.log(4);
 */
 
-// Make Http request 
+
+// Make Http request
 /*
 const getTodos = (resource) => {
-
     return new Promise((resolve, reject) => {
-
         const request = new XMLHttpRequest();
-
 
         request.addEventListener('readystatechange', () => {
             if (request.readyState === 4 && request.status === 200) {
@@ -28,7 +26,6 @@ const getTodos = (resource) => {
                 reject('error getting resource')
             }
         });
-
         request.open('GET', resource);
         request.send();
     });
@@ -46,22 +43,22 @@ console.log('Promise 3 resolved:', data)
 });
 */
 
-// Promise example 
+// Promise example
 /*
 const getSomething = () => {
 
     return new Promise((resolve, reject) => {
-        // Fetch something 
+        // Fetch something
         resolve('some data');
 
         //reject('some error');
     });
 };
-// så här gör man resolve 
+// så här gör man resolve
  getSomething().then((data) => {
      console.log(data);
  });
- 
+
 // så här gör man reject
   getSomething().then((data) => {
           console.log(data);
@@ -76,4 +73,13 @@ const getSomething = () => {
  });
 */
 
-// 
+// Fetch api
+
+fetch('luigi.json').then((response) => {
+console.log('resolved', response);
+return response.json();
+}).then(data =>{
+console.log(data);
+}).catch((err) => {
+console.log('rejected', err)
+})
