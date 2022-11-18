@@ -16,7 +16,7 @@
  * Glöm inte rendera ut den uppdaterade listan till DOM!
  *
  */
-
+/*
 // get references to DOM elements
 const todosEl = document.querySelector('#todos');
 const newTodoFormEl = document.querySelector('#new-todo-form');
@@ -103,7 +103,7 @@ newTodoFormEl.addEventListener('submit', (e) => {
 	newTodoFormEl.reset();
 });
 
-/*
+
 // STOP USER FROM RESETTING FORM 😈
 newTodoFormEl.addEventListener('reset', e => {
 	// YOU NO RESET FORM, FORM RESETS YOU!
@@ -111,3 +111,38 @@ newTodoFormEl.addEventListener('reset', e => {
 	alert("YOU NO RESET FORM, FORM RESETS YOU!");
 });
 */
+
+// Annan sätt och göra den på
+
+const addForm = document.querySelector('add');
+
+const list = document.querySelector('todos');
+
+const generateTemplate = todo => {
+	const html = ` <li class="list-group-item d-flex justify-content-between align-items-center">
+<span>${todo}</span>
+<i class="far fa-trash-alt delete"></i>
+</li>`;
+
+list.innerHTML += html;
+};
+
+
+addForm.addEventListener('submit', e => {
+	e.preventDefault();
+	const todo = addForm.add.value.trim();
+
+	if(todo.length){
+		generateTemplate(todo);
+		addForm.reset();
+	}
+});
+
+// delete todos
+list.addEventListener('click', e => {
+if (e.target.classList.contains('delete')){
+	e.target.parentElement.remove();
+}
+});
+
+// Filtering todos
