@@ -16,7 +16,7 @@
  * Glöm inte rendera ut den uppdaterade listan till DOM!
  *
  */
-/*
+
 // get references to DOM elements
 const todosEl = document.querySelector('#todos');
 const newTodoFormEl = document.querySelector('#new-todo-form');
@@ -24,14 +24,17 @@ const newTodoFormEl = document.querySelector('#new-todo-form');
 // list of todos
 const todos = [
 	{
+		id: 1,
 		title: "Learn basic JavaScript",
 		completed: true,
 	},
 	{
-		title: "Learn DOM",
+		id: 2,
+		title: "Learn Array Methods",
 		completed: false,
 	},
 	{
+		id: 3,
 		title: "Take over the world",
 		completed: false,
 	},
@@ -41,18 +44,21 @@ const todos = [
 const renderTodos = () => {
 	console.log("rendering todos...");
 
-	todosEl.innerHTML = '';
-	todos.forEach(todo => {
+	const lis = todos.map(todo => {
+		let cssClasses = "list-group-item";
+
 		if (todo.completed) {
-			todosEl.innerHTML += `<li class="list-group-item completed">${todo.title}</li>`;
-		} else {
-			todosEl.innerHTML += `<li class="list-group-item">${todo.title}</li>`;
+			cssClasses += " completed";   // "list-group-item completed"
 		}
 
-		// todosEl.innerHTML += todo.completed
-		// 	? `<li class="list-group-item completed">${todo.title}</li>`
-		// 	: `<li class="list-group-item">${todo.title}</li>`;
+		return `
+			<li class="${cssClasses}" data-todo-id="${todo.id}">
+				${todo.title}
+			</li>
+		`;
 	});
+
+	todosEl.innerHTML = lis.join('');
 }
 renderTodos();
 
@@ -64,11 +70,14 @@ todosEl.addEventListener('click', (e) => {
 	if (e.target.tagName === "LI") {
 		// console.log("YAY you clicked on a todo (LI)", e.target);
 		// console.log("The clicked todo's title is:", e.target.innerText);
-		const clickedTodoTitle = e.target.innerText;
 
-		// search todos for the todo with the title clickedTodoTitle
+		// get the `data-todo-id` attribute from the LI element
+		const clickedTodoId = e.target.dataset.todoId;     // `data-todo-id`
+		// console.log("You clicked on the listitem for todo with id:", clickedTodoId);
+
+		// search todos for the todo with the id todoId
 		const clickedTodo = todos.find( (todo) => {
-			return todo.title === clickedTodoTitle;
+			return todo.id == clickedTodoId;
 		} );
 		console.log("found clicked todo", clickedTodo);
 
@@ -86,8 +95,29 @@ newTodoFormEl.addEventListener('submit', (e) => {
 	// Prevent form from being submitted (to the server)
 	e.preventDefault();
 
+	// Extract all todo ids
+	// const todoIds = todos.map(todo => todo.id);    // [1, 2, 3]
+	// const maxTodoId = Math.max(...todoIds);   // 3
+	// const newTodoId = maxTodoId + 1;    // 4
+
+	const maxTodoId = todos.reduce((maxId, todo) => {
+		return Math.max(todo.id, maxId);
+
+		// return (todo.id > maxId)
+		// 	? todo.id
+		// 	: maxId;
+
+		// if (todo.id > maxId) {
+		// 	return todo.id;
+		// }
+
+		// return maxId;
+	}, 0);
+	const newTodoId = maxTodoId + 1;    // 4
+
 	// Create and push new todo into array
 	todos.push({
+		id: newTodoId,
 		title: newTodoFormEl.newTodo.value,
 		completed: false,
 	});
@@ -103,14 +133,17 @@ newTodoFormEl.addEventListener('submit', (e) => {
 	newTodoFormEl.reset();
 });
 
-
+/*
 // STOP USER FROM RESETTING FORM 😈
 newTodoFormEl.addEventListener('reset', e => {
 	// YOU NO RESET FORM, FORM RESETS YOU!
 	e.preventDefault();
+
 	alert("YOU NO RESET FORM, FORM RESETS YOU!");
 });
 */
+
+/*
 
 // Annan sätt och göra den på
 
@@ -161,3 +194,4 @@ search.addEventListener('keyup', () => {
 	const term = search.value.trim().toLowerCase();
 	filterTodos(term);
 });
+*/
