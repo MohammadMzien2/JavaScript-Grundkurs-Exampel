@@ -80,3 +80,4 @@ pets.forEach((pet) => {
     // annan method och använda den
     // let info = "Pet's name is:" + pet.name + "and age is:" +
 });
+*/
