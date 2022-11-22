@@ -12,8 +12,8 @@ console.log(4);
 */
 
 
-// Make Http request
-
+// create a XML Http request
+/*
 const getTodos = (resource) => {
     return new Promise((resolve, reject) => {
         const request = new XMLHttpRequest();
@@ -41,6 +41,20 @@ console.log('Promise 3 resolved:', data)
 }).catch(err => {
     console.log('promise rejected:', err);
 });
+*/
+
+// Create a new XML Http request
+const request = new XMLHttpRequest();
+
+// Set request to Get data from 'https://jsonplaceholder.typicode.com/users'
+request.open('Get', 'https://jsonplaceholder.typicode.com/users');
+
+// Send the request 
+request.send();
+
+//
+console.log("reguest sent!");
+
 
 
 // Promise example
