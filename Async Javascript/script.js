@@ -13,7 +13,7 @@ console.log(4);
 
 
 // Make Http request
-/*
+
 const getTodos = (resource) => {
     return new Promise((resolve, reject) => {
         const request = new XMLHttpRequest();
@@ -41,7 +41,7 @@ console.log('Promise 3 resolved:', data)
 }).catch(err => {
     console.log('promise rejected:', err);
 });
-*/
+
 
 // Promise example
 /*
@@ -88,7 +88,7 @@ getTodos()
 */
 
 // Throwing custom errors
-
+/*
 const getTodos = async () => {
 
     const response = await fetch('luigi.json');
@@ -102,7 +102,7 @@ const getTodos = async () => {
     getTodos()
     .then(data => console.log('resolved:', data))
     .catch(err => console.log('rejectde:', err.message));
-    
+    */
 
 // Fetch api
 /*
