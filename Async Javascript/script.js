@@ -46,6 +46,36 @@ console.log('Promise 3 resolved:', data)
 // Create a new XML Http request
 const request = new XMLHttpRequest();
 
+// Attach an event-Listner to the request 
+request.addEventListener('readystatechange', () => {
+    // is request done 
+    if (request.readyState === 4) { // 4 = DONE
+		// YAY DONE!
+
+        // Was the request successful?
+		if (request.status === 200) {
+			// 200 OK
+			console.log("YAY SUCCESS");
+
+            // take the STRING in responseText and PARSE it into JavaScript object
+            const data = JSON.parse(request.responseText);
+
+            console.log("Got me sum data:");
+            console.table(data);
+
+            // Loop over all users
+			data.forEach(user => {
+				// Append a listitem for each user
+				document.querySelector('#users').innerHTML += `<li>${user.name}</li>`;
+			});
+
+		} else {
+			// Something went wrong :'(
+			console.log("ERROR ERROR DANGER WILL ROBINSON!");
+		}
+	}
+});
+
 // Set request to Get data from 'https://jsonplaceholder.typicode.com/users'
 request.open('Get', 'https://jsonplaceholder.typicode.com/users');
 
@@ -54,6 +84,7 @@ request.send();
 
 //
 console.log("reguest sent!");
+console.log(request);
 
 
 
@@ -129,5 +160,3 @@ console.log(data);
 console.log('rejected', err)
 });
 */
-
-//
