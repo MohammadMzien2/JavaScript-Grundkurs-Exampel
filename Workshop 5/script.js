@@ -145,6 +145,9 @@ newTodoFormEl.addEventListener('reset', e => {
 
 /*
 
+
+
+
 // Annan sätt och göra den på
 
 const addForm = document.querySelector('add');
