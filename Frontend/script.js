@@ -24,6 +24,32 @@ const newTodoFormEl = document.querySelector('#new-todo-form');
 // list of todos
 let todos = [];
 
+/**
+ * Get todos from server, update `todos` array and render todos.
+ */
+const getTodos = async () => {
+	// Fetch todos from server
+	const data = await fetchTodos();
+
+	// Set `todos` array to the data we got from the server
+	todos = data;
+
+	// Render the todos
+	renderTodos();
+}
+
+/**
+ * Fetches todos from server.
+ */
+const fetchTodos = async () => {
+	const res = await fetch('http://localhost:3001/todos');
+	if (!res.ok) {
+		throw new Error(`Could not fetch todos, reason: ${res.status} ${res.statusText}`);
+	}
+
+	return await res.json();
+}
+
 // Render todos to DOM
 const renderTodos = () => {
 	console.log("rendering todos...");
@@ -44,7 +70,6 @@ const renderTodos = () => {
 
 	todosEl.innerHTML = lis.join('');
 }
-renderTodos();
 
 // Listen for click-events on `#todos` (the `<ul>`)
 todosEl.addEventListener('click', (e) => {
@@ -75,53 +100,40 @@ todosEl.addEventListener('click', (e) => {
 });
 
 // Create a new todo when form is submitted
-newTodoFormEl.addEventListener('submit', (e) => {
+newTodoFormEl.addEventListener('submit', async (e) => {
 	// Prevent form from being submitted (to the server)
 	e.preventDefault();
 
-	// Extract all todo ids
-	// const todoIds = todos.map(todo => todo.id);    // [1, 2, 3]
-	// const maxTodoId = Math.max(...todoIds);   // 3
-	// const newTodoId = maxTodoId + 1;    // 4
-
-	const maxTodoId = todos.reduce((maxId, todo) => {
-		return Math.max(todo.id, maxId);
-
-		// return (todo.id > maxId)
-		// 	? todo.id
-		// 	: maxId;
-
-		// if (todo.id > maxId) {
-		// 	return todo.id;
-		// }
-
-		// return maxId;
-	}, 0);
-	const newTodoId = maxTodoId + 1;    // 4
-
-	// Create and push new todo into array
-	todos.push({
-		id: newTodoId,
+	// Create new todo
+	const newTodo = {
 		title: newTodoFormEl.newTodo.value,
 		completed: false,
+	}
+
+	// POST todo to server
+	const res = await fetch('http://localhost:3001/todos', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(newTodo),
 	});
-	console.log("created new todo...");
 
-	// Render new todo to DOM
-	renderTodos();
+	// Check that everything went ok
+	if (!res.ok) {
+		alert("Could not create todo! 🥺");
+		console.log(res);
+		return;
+	}
+	const data = await res.json();
+	console.log("The response data was:", data);
 
-	// Empty input field
-	// newTodoFormEl.newTodo.value = '';
+	// Get the new list of todos from the server
+	getTodos();
 
 	// Reset form
 	newTodoFormEl.reset();
 });
 
-/*
-// STOP USER FROM RESETTING FORM 😈
-newTodoFormEl.addEventListener('reset', e => {
-	// YOU NO RESET FORM, FORM RESETS YOU!
-	e.preventDefault();
-	alert("YOU NO RESET FORM, FORM RESETS YOU!");
-});
-*/
+// Get and render todos
+getTodos();

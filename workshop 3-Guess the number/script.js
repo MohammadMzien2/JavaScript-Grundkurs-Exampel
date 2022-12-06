@@ -134,7 +134,7 @@ console.log("Game ended");*/
  
  // Listen for guesses
  formGuessEl.addEventListener('submit', e => {
-     // Stop form from being sent to the server
+     // Stop form  being sent to the server
      e.preventDefault();
  
      // Get guessed number from input-field (and convert it to a Number)
