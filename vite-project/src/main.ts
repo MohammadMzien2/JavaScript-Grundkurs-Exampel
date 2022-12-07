@@ -1,23 +1,23 @@
 import './style.css'
-import typescriptLogo from './typescript.svg'
-import { setupCounter } from './counter'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const todoList = document.querySelector('#todos')
+const newTodoForm = document.querySelector("#new-todo-form")
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const getRandomNumber = (max: number = 10): number => {
+  return  Math.ceil(Math.random() * max)
+}
+
+const num =  getRandomNumber()
+console.log("Random number:", num)
+
+newTodoForm?.addEventListener('submit', e => {
+  e.preventDefault()
+
+  const inputNewTodoTitle = document.querySelector<HTMLInputElement>('#new-todo-title')!
+  const newTodoTitle = inputNewTodoTitle.value
+
+  if (todoList) {
+    todoList.innerHTML += `<li>${newTodoTitle}</li>`
+  }
+  console.log(newTodoTitle)
+})
