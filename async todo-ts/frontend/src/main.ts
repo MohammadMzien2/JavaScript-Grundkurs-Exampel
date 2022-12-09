@@ -6,6 +6,8 @@ interface ITodo {
     title: string,
     completed: boolean,
 }
+// Local variable containing all the todos from the server 
+let todos: ITodo[] = []
 
 // Fetch todos from server
 const fetchTodos = async () => {
@@ -20,13 +22,21 @@ const fetchTodos = async () => {
 
 // Get todos from server, update `todos`-array and render todos.
 const getTodos = async () => {
-    // Fetch todos from server
-    const omgdata = await fetchTodos()
-    console.log(omgdata)
+    // Fetch todos from server and update local copy    
+    todos = await fetchTodos()
 
     // Update `todos`-array
+    renderTodos()
 
     // Render todos
+
+}
+
+// Render todos to DOM
+const renderTodos = () => {
+    document.querySelector("#todos")!.innerHTML =
+    todos.map(todo => `<li>${todo.title}</li> `)
+    .join('')
 }
 
 getTodos()
