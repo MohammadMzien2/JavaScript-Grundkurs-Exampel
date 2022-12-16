@@ -46,7 +46,7 @@ cityForm.addEventListener('submit', e => {
     cityForm.reset();
 
     // update the ui with new city
-        Forecast.updateCity(city).
+        forecast.updateCity(city).
         then(data => updateUI(data))
         .catch(err => console.log(err));
 
@@ -55,7 +55,7 @@ localStorage.setItem('city', city)
 });
 
 if(localStorage.getItem('city')){
-    Forecast.updateCity(localStorage.getItem('city'))
+    forecast.updateCity(localStorage.getItem('city'))
     .then (data => updateUI(data))
     .catch(err => console.log(err));
 }
