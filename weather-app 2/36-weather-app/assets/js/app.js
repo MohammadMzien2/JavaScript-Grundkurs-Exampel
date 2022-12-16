@@ -81,6 +81,10 @@ document.querySelector('#search-form').addEventListener('submit', async e => {
 		return;
 	}
 
+	// Save city to localstorage
+	localStorage.setItem('weather_city', city);
+
+
 	// hide forecast and show spinner
 	forecastEl.classList.add('hide');
 	spinnerEl.classList.remove('hide');
@@ -100,3 +104,6 @@ document.querySelector('#search-form').addEventListener('submit', async e => {
 	spinnerEl.classList.add('hide');
 	forecastEl.classList.remove('hide');
 });
+
+// set city input to any previously saved city in localstorage
+document.querySelector('#query').value = localStorage.getItem('weather_city') ??'';
